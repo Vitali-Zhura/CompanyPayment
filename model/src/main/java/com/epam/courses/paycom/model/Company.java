@@ -1,15 +1,13 @@
     package com.epam.courses.paycom.model;
 
-    import javax.persistence.Column;
-    import javax.persistence.Entity;
-    import javax.persistence.Id;
-    import javax.persistence.Table;
+    import javax.persistence.*;
 
     @Entity
     @Table(name = "companies")
     public class Company {
 
         @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "companyId")
         private Integer companyId;
 
