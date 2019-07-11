@@ -1,10 +1,10 @@
 package com.epam.courses.paycom.dao;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -17,11 +17,11 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@ContextConfiguration(locations = "classpath:application-context.xml")
+@ContextConfiguration(locations = "classpath:application-context-test.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
 @Rollback(true)
-public class CompanyDaoImplTest {
+public class CompanyDaoJpaImplTest {
 
     @Autowired
     private CompanyDao companyDao;
@@ -30,7 +30,7 @@ public class CompanyDaoImplTest {
     public void findAll() {
         Stream<Company> companies = companyDao.findAll();
         assertNotNull(companies);
-        assertEquals(companies.count(), 1);
+        assertEquals(companies.count(), 4);
     }
 
     @Test
@@ -108,5 +108,14 @@ public class CompanyDaoImplTest {
         companyDao.delete(company.getCompanyId());
         Stream<Company> companiesAfterDelete = companyDao.findAll();
         assertEquals(1, companiesBeforeDelete.count() - companiesAfterDelete.count());
+    }
+    
+    @Test
+    public void delete1() {
+
+        Company company =  companyDao.findById(1).get();
+        Assertions.assertThrows(ConstraintViolationException.class, () -> {
+            companyDao.delete(company.getCompanyId());
+        });
     }
 }

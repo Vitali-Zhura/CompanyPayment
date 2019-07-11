@@ -1,55 +1,57 @@
-ackage com.epam.courses.paycom.dao;
+package com.epam.courses.paycom.dao;
 
-import com.epam.courses.paycom.dao.CompanyDao;
-import com.epam.courses.paycom.model.Company;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import com.epam.courses.paycom.model.Payment;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public class PaymentDaoImpl implements PaymentDao {
+public class PaymentDaoJpaImpl implements PaymentDao {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public Stream<Company> findAll() {
-        String sql = "Select a from Company a";
-        List<Company> companies = entityManager.createQuery(sql, Company.class).getResultList();
-        return companies.stream();
+    public Stream<Payment> findAll() {
+        String sql = "Select b from Payment b";
+        List<Payment> payments = entityManager.createQuery(sql, Payment.class).getResultList();
+        return payments.stream();
     }
 
     @Override
-    public Optional <Company> findById(Integer companyId) {
-        Company company = entityManager.find(Company.class, companyId);
-        return Optional.ofNullable(company);
+    public Optional <Payment> findById(Integer companyId) {
+        Payment payment = entityManager.find(Payment.class, companyId);
+        return Optional.ofNullable(payment);
     }
 
     @Override
-    public Optional <Company> findByAccount(String companyAccount) {
-        String sql = "Select a from Company a Where a.companyAccount=:companyAccount";
-        Company company = entityManager.createQuery(sql, Company.class).setParameter("companyAccount", companyAccount).getSingleResult();
-        return Optional.ofNullable(company);
+    public Stream <Payment> findByDate(Date beginDate, Date endDate) {
+       LocalDate endDateLocal = endDate.toLocalDate().plusDays(1);
+       endDate = endDate.valueOf(endDateLocal);
+
+        String sql = "Select b from Payment b where b.paymentDate >= :beginDate AND b.paymentDate < :endDate";
+        List<Payment> payments = entityManager.createQuery(sql, Payment.class)
+                .setParameter("beginDate", beginDate)
+                .setParameter( "endDate", endDate)
+                .getResultList();
+        return payments.stream();
     }
 
     @Override
-    public Optional<Company> add(Company company) {
-        entityManager.persist(company);
-        return Optional.of(company);
+    public Optional<Payment> add(Payment payment) {
+        entityManager.persist(payment);
+        return Optional.of(payment);
     }
 
     @Override
-    public void update(Company company) {
-        entityManager.merge(company);
-    }
-
-    @Override
-    public void delete(int companyId) {
-        entityManager.remove(findById(companyId).get());
+    public void cancel(int paymentId) {
+        entityManager.remove(findById(paymentId).get());
     }
 }

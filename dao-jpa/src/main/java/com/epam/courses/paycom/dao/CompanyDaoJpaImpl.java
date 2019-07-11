@@ -6,12 +6,15 @@ import java.util.Optional;
 import java.util.stream.Stream;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.constraints.Null;
+
+import com.epam.courses.paycom.stub.CompanyStub;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public class CompanyDaoImpl implements CompanyDao {
+public class CompanyDaoJpaImpl implements CompanyDao {
 
     @PersistenceContext
     private EntityManager entityManager;
