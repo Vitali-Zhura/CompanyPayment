@@ -12,6 +12,7 @@
         <module>model</module>
         <module>test-db</module>
         <module>dao-api</module>
+        <module>dao-jpa</module>
     </modules>
 
     <distributionManagement>
