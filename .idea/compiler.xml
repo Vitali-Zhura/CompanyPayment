@@ -7,10 +7,22 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="dao-jpa" />
-        <module name="test-db" />
         <module name="dao-api" />
+        <module name="service-api" />
         <module name="model" />
+        <module name="test-db" />
+        <module name="service" />
       </profile>
     </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="dao-api" options="" />
+      <module name="dao-jpa" options="" />
+      <module name="model" options="" />
+      <module name="service" options="" />
+      <module name="service-api" options="" />
+      <module name="test-db" options="" />
+    </option>
   </component>
 </project>

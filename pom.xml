@@ -8,11 +8,14 @@
     <artifactId>CompanyPayment</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
         <module>model</module>
         <module>test-db</module>
         <module>dao-api</module>
         <module>dao-jpa</module>
+        <module>service-api</module>
+        <module>service</module>
     </modules>
 
     <distributionManagement>
@@ -30,6 +33,7 @@
         <org.springframework.version>5.1.4.RELEASE</org.springframework.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
         <logback.version>1.2.3</logback.version>
+        <mockito.vertion>2.23.4</mockito.vertion>
         <spring-test.version>5.0.5.RELEASE</spring-test.version>
         <spring-jdbc.version>5.0.5.RELEASE</spring-jdbc.version>
         <h2.version>1.4.197</h2.version>
@@ -38,6 +42,31 @@
     </properties>
     <dependencyManagement>
     <dependencies>
+        <dependency>
+            <groupId>com.epam.courses.paycom</groupId>
+            <artifactId>dao-jpa</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.epam.courses.paycom</groupId>
+            <artifactId>service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.epam.courses.paycom</groupId>
+            <artifactId>service-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.epam.courses.paycom</groupId>
+            <artifactId>model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.epam.courses.paycom</groupId>
+            <artifactId>test-db</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.epam.courses.paycom</groupId>
             <artifactId>model</artifactId>
@@ -91,6 +120,22 @@
             <version>${org.springframework.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-parent</artifactId>
+            <version>2.1.6.RELEASE</version>
+            <type>pom</type>
+        </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web-services</artifactId>
+                <version>2.1.6.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>wsdl4j</groupId>
+                <artifactId>wsdl4j</artifactId>
+                <version>2.1.6.RELEASE</version>
+            </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
@@ -192,6 +237,12 @@
             <groupId>javax.transaction</groupId>
             <artifactId>jta</artifactId>
             <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.vertion}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     </dependencyManagement>

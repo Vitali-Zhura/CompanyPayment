@@ -1,51 +1,63 @@
 package com.epam.courses.paycom.stub;
 
+
 public class CompanyStub {
 
-    private Integer id;
+    private Integer companyId;
 
-    private String company;
+    private String companyName;
 
-    private Integer count;
+    private Integer counts;
 
     private Integer amounts;
 
+    public CompanyStub() {
+
+    }
+
+    public CompanyStub(Integer companyId, String companyName, Integer counts, Integer amounts) {
+        this.companyId = companyId;
+        this.companyName = companyName;
+        this.counts = counts;
+        this.amounts = amounts;
+    }
+
     public Integer getId() {
-        return id;
+        return companyId;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.companyId = companyId;
     }
 
     public CompanyStub id(Integer id) {
-        this.id = id;
+        this.companyId = companyId;
         return this;
     }
 
     public String getCompany() {
-        return company;
+        return companyName;
     }
 
-    public void setCompany(String company) {
-        this.company = company;
+    public void setCompany(String companyName) {
+        this.companyName = companyName;
     }
 
-    public CompanyStub company(String company) {
-        this.company = company;
+    public CompanyStub companyName(String company) {
+        this.companyName = companyName;
         return this;
     }
 
-    public Integer getCount() {
-        return count;
+    public Integer getCounts() {
+        return counts;
     }
 
-    public void setCount(Integer count) {
-        this.count = count;
+    public void setCounts(Integer counts) {
+        this.counts = counts;
     }
 
-    public CompanyStub count(Integer count) {
-        this.count = count;
+    public CompanyStub counts(Integer counts) {
+        this.counts = counts;
         return this;
     }
 
@@ -65,9 +77,9 @@ public class CompanyStub {
     @Override
     public String toString() {
         return "CompanyStub{" +
-                "id=" + id +
-                ", company='" + company + '\'' +
-                ", count='" + count + '\'' +
+                "id=" + companyId +
+                ", company='" + companyName + '\'' +
+                ", count='" + counts + '\'' +
                 ", amounts='" + amounts + '\'' +
                 '}';
     }

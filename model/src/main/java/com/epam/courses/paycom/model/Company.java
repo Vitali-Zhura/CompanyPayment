@@ -1,7 +1,19 @@
     package com.epam.courses.paycom.model;
 
+    import com.epam.courses.paycom.stub.CompanyStub;
+
     import javax.persistence.*;
     import java.io.Serializable;
+
+    @SqlResultSetMapping(
+            name = "BookValueMapping",
+            classes = @ConstructorResult(
+                    targetClass = CompanyStub.class,
+                    columns = {
+                            @ColumnResult(name = "companyId", type = Integer.class),
+                            @ColumnResult(name = "companyName", type = String.class),
+                            @ColumnResult(name = "counts", type = Integer.class),
+                            @ColumnResult(name = "amounts", type = Integer.class)}))
 
     @Entity(name="Company")
     @Table(name = "company", uniqueConstraints={@UniqueConstraint(columnNames={"companyAccount"})})
