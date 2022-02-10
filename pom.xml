@@ -37,7 +37,7 @@
         <spring-test.version>5.0.5.RELEASE</spring-test.version>
         <spring-jdbc.version>5.0.5.RELEASE</spring-jdbc.version>
         <h2.version>1.4.197</h2.version>
-        <org.hibernate.version>5.0.9.Final</org.hibernate.version>
+        <org.hibernate.version>5.4.24.Final</org.hibernate.version>
         <org.hibernate.javax.persistence>1.0.1.Final</org.hibernate.javax.persistence>
     </properties>
     <dependencyManagement>
